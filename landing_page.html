@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Name</title>
+  <meta name="description" content="A short description of you and your work.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --axis: #e1decf;        /* diagram axes (and text on dark sections) */
+      --main-bg: #2e4a3c;     /* background of the diagram section */
+      --bio-bg: #000000;      /* background of the bottom section */
+
+      --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+      --body: "Newsreader", Georgia, "Times New Roman", serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bio-bg);
+      color: var(--axis);
+      font-family: var(--body);
+      font-size: 1.1875rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-underline-offset: 0.2em; }
+
+    :focus-visible {
+      outline: 3px solid var(--axis);
+      outline-offset: 4px;
+    }
+
+    .wrap { width: min(100% - 3rem, 76rem); margin-inline: auto; }
+
+    /* ---------- Main section: the diagram ---------- */
+    .main {
+      background: var(--main-bg);
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main header { padding-block: 1.75rem 1rem; }
+    .main header .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .brand {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+    .tagline { margin: 0.15rem 0 0; font-size: 1.0625rem; opacity: 0.85; }
+    nav { display: flex; gap: 1.75rem; font-size: 1rem; }
+    nav a { text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+
+    .main .wrap.chart-wrap {
+      flex: 1;
+      display: flex;
+      padding-block: 1rem 2.5rem;
+    }
+
+    .chart {
+      flex: 1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: 1fr auto;
+      min-height: 26rem;
+    }
+
+    /* y-axis labels */
+    .y-axis {
+      grid-column: 1;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.5rem 1rem 0.25rem 0;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .y-axis span { writing-mode: vertical-rl; transform: rotate(180deg); }
+
+    /* the plot: left and bottom borders are the axes */
+    .plot {
+      grid-column: 2;
+      grid-row: 1;
+      position: relative;
+      border-left: 2px solid var(--axis);
+      border-bottom: 2px solid var(--axis);
+    }
+    /* points are positioned inside this inset area */
+    .field { position: absolute; inset: 1.5rem 4.5rem 1.5rem 1.5rem; }
+
+    .point {
+      position: absolute;
+      left: var(--x);
+      bottom: var(--y);
+      transform: translate(-50%, 50%);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--axis);
+      text-decoration: none;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    .point::before {
+      content: "";
+      flex: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: var(--axis);
+      transition: transform 0.15s;
+    }
+    .point:hover::before, .point:focus-visible::before { transform: scale(1.35); }
+    .point:hover span, .point:focus-visible span { text-decoration: underline; text-underline-offset: 0.2em; }
+    /* flip the label to the left of the dot near the right edge */
+    .point.flip { flex-direction: row-reverse; }
+
+    /* x-axis labels: aligned with the same inset as .field */
+    .x-axis {
+      grid-column: 2;
+      grid-row: 2;
+      position: relative;
+      height: 2.25rem;
+      margin: 0.5rem 4.5rem 0 1.5rem;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .x-axis span {
+      position: absolute;
+      top: 0;
+      left: calc(var(--i) * 20%);
+      transform: translateX(-50%);
+    }
+    .x-axis span::before {
+      content: "";
+      display: block;
+      width: 2px;
+      height: 0.5rem;
+      margin: -0.5rem auto 0.25rem;
+      background: var(--axis);
+    }
+
+    /* ---------- Bottom section: image and bio ---------- */
+    .bio {
+      background: var(--bio-bg);
+      padding-block: clamp(4rem, 9vw, 7rem);
+    }
+    .bio .wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: 2.5rem clamp(2rem, 6vw, 5rem);
+      align-items: start;
+    }
+    .bio figure { margin: 0; }
+    .bio img,
+    .photo-placeholder {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+    .photo-placeholder {
+      display: grid;
+      place-items: center;
+      border: 2px dashed var(--axis);
+      font-family: var(--display);
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+    .bio h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin: 0 0 1.5rem;
+    }
+    .bio p { max-width: 36rem; margin: 0 0 1.1rem; }
+    .bio .contact { margin-top: 2rem; }
+
+    @media (max-width: 720px) {
+      .bio .wrap { grid-template-columns: 1fr; }
+      .bio figure { max-width: 22rem; }
+      .field { right: 3.5rem; }
+      .x-axis { margin-right: 3.5rem; }
+      .point { font-size: 0.8125rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .point::before { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========== MAIN SECTION ========== -->
+  <section class="main" id="top">
+    <header>
+      <div class="wrap">
+        <div>
+          <a class="brand" href="#top">Your Name</a>
+          <p class="tagline">One line about what you do.</p>
+        </div>
+        <nav aria-label="Main">
+          <a href="#bio">Bio</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="wrap chart-wrap">
+      <div class="chart" role="group" aria-label="Projects plotted by year and type">
+
+        <div class="y-axis" aria-hidden="true">
+          <span>play</span>
+          <span>work</span>
+        </div>
+
+        <div class="plot">
+          <div class="field">
+            <!--
+              Each project is one link. Move it by changing --x and --y:
+              --x: 0% is the first year, 100% is the last year.
+              --y: 0% is the bottom of the chart, 100% is the top.
+              Add class="point flip" if its label runs off the right edge.
+            -->
+            <a class="point" href="#" style="--x: 6%;  --y: 78%;"><span>Project one</span></a>
+            <a class="point" href="#" style="--x: 24%; --y: 30%;"><span>Project two</span></a>
+            <a class="point" href="#" style="--x: 42%; --y: 62%;"><span>Project three</span></a>
+            <a class="point" href="#" style="--x: 58%; --y: 12%;"><span>Project four</span></a>
+            <a class="point" href="#" style="--x: 70%; --y: 88%;"><span>Project five</span></a>
+            <a class="point flip" href="#" style="--x: 96%; --y: 45%;"><span>Project six</span></a>
+          </div>
+        </div>
+
+        <div class="x-axis" aria-hidden="true">
+          <span style="--i: 0">2021</span>
+          <span style="--i: 1">2022</span>
+          <span style="--i: 2">2023</span>
+          <span style="--i: 3">2024</span>
+          <span style="--i: 4">2025</span>
+          <span style="--i: 5">2026</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BOTTOM SECTION ========== -->
+  <section class="bio" id="bio">
+    <div class="wrap">
+      <figure>
+        <!-- Replace this box with your photo:
+             <img src="your-photo.jpg" alt="Portrait of Your Name"> -->
+        <div class="photo-placeholder">Your photo</div>
+      </figure>
+
+      <div>
+        <h2>Hi, I'm Your Name.</h2>
+        <p>Write your bio here: who you are, what you do, and what you are interested in.</p>
+        <p>Add a second paragraph if you like. Keep it warm and specific.</p>
+        <p class="contact" id="contact">Contact: <a href="mailto:you@example.com">you@example.com</a></p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
