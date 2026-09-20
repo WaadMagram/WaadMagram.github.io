@@ -12,8 +12,10 @@
 
   <style>
     :root {
-      --axis: #e1decf;        /* diagram axes (and text on dark sections) */
+      --axis: #e1decf;        /* text and lines on the black bio section */
       --main-bg: #e1decf;     /* background of the diagram section */
+      --main-ink: #26251f;    /* axes and dots on the diagram section */
+      --main-text: #000000;   /* all text on the diagram section */
       --bio-bg: #000000;      /* background of the bottom section */
 
       --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
@@ -40,11 +42,14 @@
       outline-offset: 4px;
     }
 
+    .main :focus-visible { outline-color: var(--main-ink); }
+
     .wrap { width: min(100% - 3rem, 76rem); margin-inline: auto; }
 
     /* ---------- Main section: the diagram ---------- */
     .main {
       background: var(--main-bg);
+      color: var(--main-text);
       min-height: 100vh;
       min-height: 100svh;
       display: flex;
@@ -66,7 +71,7 @@
       letter-spacing: -0.01em;
       text-decoration: none;
     }
-    .tagline { margin: 0.15rem 0 0; font-size: 1.0625rem; opacity: 0.85; }
+    .tagline { margin: 0.15rem 0 0; font-size: 1.0625rem; }
     nav { display: flex; gap: 1.75rem; font-size: 1rem; }
     nav a { text-decoration: none; }
     nav a:hover { text-decoration: underline; }
@@ -87,7 +92,7 @@
     .chart::after {
       content: "";
       position: absolute;
-      background: var(--axis);
+      background: var(--main-ink);
     }
     /* horizontal axis (years) */
     .chart::before {
@@ -133,7 +138,7 @@
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      color: var(--axis);
+      color: var(--main-text);
       text-decoration: none;
       font-family: var(--display);
       font-weight: 500;
@@ -147,7 +152,7 @@
       width: 1.25rem;
       height: 1.25rem;
       border-radius: 50%;
-      background: var(--axis);
+      background: var(--main-ink);
       transition: transform 0.15s;
     }
     .point:hover::before, .point:focus-visible::before { transform: scale(1.35); }
