@@ -1,5 +1,5 @@
 :root {
-  --cream: #e1decf;
+  --mauve: #83454e;
   --ink: #26251f;
   --black: #000000;
 
@@ -13,7 +13,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--black);
-  color: var(--cream);
+  color: var(--mauve);
   font-family: var(--body);
   font-size: 1.1875rem;
   line-height: 1.6;
@@ -22,7 +22,7 @@ body {
 
 a { color: inherit; text-underline-offset: 0.2em; }
 
-:focus-visible { outline: 3px solid var(--cream); outline-offset: 4px; }
+:focus-visible { outline: 3px solid var(--mauve); outline-offset: 4px; }
 .main :focus-visible { outline-color: var(--ink); }
 
 .wrap { width: min(100% - 3rem, 76rem); margin: 0 auto; }
@@ -31,7 +31,7 @@ a { color: inherit; text-underline-offset: 0.2em; }
 /* top */
 
 .main {
-  background: var(--cream);
+  background: var(--mauve);
   color: var(--black);
   min-height: 100vh;
   min-height: 100svh;
