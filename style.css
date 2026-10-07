@@ -1,0 +1,176 @@
+:root {
+  --cream: #e1decf;
+  --ink: #26251f;
+  --black: #000000;
+
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Newsreader", Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--cream);
+  font-family: var(--body);
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-underline-offset: 0.2em; }
+
+:focus-visible { outline: 3px solid var(--cream); outline-offset: 4px; }
+.main :focus-visible { outline-color: var(--ink); }
+
+.wrap { width: min(100% - 3rem, 76rem); margin: 0 auto; }
+
+
+/* top */
+
+.main {
+  background: var(--cream);
+  color: var(--black);
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+header { padding: 1.75rem 0 1rem; }
+header .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.brand {
+  font-family: "Lato", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.tagline { margin: 0.15rem 0 0; font-size: 1.0625rem; }
+
+nav { display: flex; gap: 1.75rem; font-size: 1rem; }
+nav a { text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+
+.chart-wrap { flex: 1; display: flex; padding: 0.5rem 0 2.5rem; }
+.chart { position: relative; flex: 1; min-height: 32rem; }
+
+/* the two axes */
+.chart::before,
+.chart::after {
+  content: "";
+  position: absolute;
+  background: var(--ink);
+}
+.chart::before { left: 4.5rem; right: 4.5rem; top: 50%; height: 2px; margin-top: -1px; }
+.chart::after  { top: 2rem; bottom: 2rem; left: 50%; width: 2px; margin-left: -1px; }
+
+.axis-label {
+  position: absolute;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1;
+}
+.axis-label.top    { top: 0;    left: 50%; transform: translateX(-50%); }
+.axis-label.bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
+.axis-label.left   { left: 0;   top: 50%;  transform: translateY(-50%); }
+.axis-label.right  { right: 0;  top: 50%;  transform: translateY(-50%); }
+
+.field { position: absolute; inset: 2.75rem 5.5rem; z-index: 1; }
+
+.point {
+  position: absolute;
+  left: var(--x);
+  bottom: var(--y);
+  transform: translate(-50%, 50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.point::before {
+  content: "";
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: var(--ink);
+  transition: transform 0.15s;
+}
+.point:hover::before, .point:focus-visible::before { transform: scale(1.35); }
+.point:hover span, .point:focus-visible span { text-decoration: underline; }
+.point.flip { flex-direction: row-reverse; }
+
+
+/* bottom */
+
+.bio { padding: 4.5rem 0 3.5rem; }
+
+.bio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+figure { margin: 0; }
+figure img,
+.photo-placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 10;
+  object-fit: cover;
+}
+.photo-placeholder {
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--cream);
+  opacity: 0.6;
+}
+
+.bio-text p { max-width: 40rem; margin: 0 0 1.6rem; }
+
+footer { text-align: center; margin-top: 4rem; }
+footer p { margin: 0; }
+.sign {
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.contact { margin-top: 1.5rem; font-size: 1.0625rem; }
+.contact a { text-decoration: none; }
+.contact a:hover { text-decoration: underline; }
+.sparkle { margin-top: 1.25rem; font-size: 0.875rem; opacity: 0.8; }
+
+
+/* phones */
+@media (max-width: 720px) {
+  .bio-grid { grid-template-columns: 1fr; }
+  figure { max-width: 22rem; }
+  .chart::before { left: 3.25rem; right: 3.25rem; }
+  .field { inset: 2.75rem 3.5rem; }
+  .axis-label { font-size: 0.9375rem; }
+  .point { font-size: 0.8125rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .point::before { transition: none; }
+}
