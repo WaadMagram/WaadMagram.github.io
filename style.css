@@ -7,6 +7,13 @@
   --body: "Newsreader", Georgia, serif;
 }
 
+/* lets the ripple rings move smoothly */
+@property --shift {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -31,7 +38,13 @@ a { color: inherit; text-underline-offset: 0.2em; }
 /* top */
 
 .main {
-  background: var(--mauve);
+  /* ripple rings: three colors, repeating every 24px */
+  background: repeating-radial-gradient(circle at var(--mx, 50%) var(--my, 50%),
+    #77444a calc(var(--shift) + 0px),
+    #783c45 calc(var(--shift) + 8px),
+    #8c4d55 calc(var(--shift) + 16px),
+    #77444a calc(var(--shift) + 24px));
+  animation: ripple 2s linear infinite;
   color: var(--black);
   min-height: 100vh;
   min-height: 100svh;
@@ -40,6 +53,13 @@ a { color: inherit; text-underline-offset: 0.2em; }
   position: relative;
   isolation: isolate;
 }
+
+/* rings move inward. swap 24px and 0px to move outward */
+@keyframes ripple {
+  from { --shift: 24px; }
+  to   { --shift: 0px; }
+}
+
 /* paper grain */
 .main::before {
   content: "";
@@ -152,7 +172,7 @@ figure img,
 .photo-placeholder {
   display: grid;
   place-items: center;
-  border: 1px dashed var(--cream);
+  border: 1px dashed var(--mauve);
   opacity: 0.6;
 }
 
@@ -186,4 +206,5 @@ footer p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .point::before { transition: none; }
+  .main { animation: none; }
 }
