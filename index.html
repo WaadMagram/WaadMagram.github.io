@@ -5,217 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Waad Magram</title>
   <meta name="description" content="Material scientist and engineer based in Providence.">
+  <meta name="robots" content="noindex, nofollow">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Lato:wght@700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --axis: #e1decf;        /* text and lines on the black bio section */
-      --main-bg: #e1decf;     /* background of the diagram section */
-      --main-ink: #26251f;    /* axes and dots on the diagram section */
-      --main-text: #000000;   /* all text on the diagram section */
-      --bio-bg: #000000;      /* background of the bottom section */
-
-      --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-      --body: "Newsreader", Georgia, "Times New Roman", serif;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background: var(--bio-bg);
-      color: var(--axis);
-      font-family: var(--body);
-      font-size: 1.1875rem;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; text-underline-offset: 0.2em; }
-
-    :focus-visible {
-      outline: 3px solid var(--axis);
-      outline-offset: 4px;
-    }
-
-    .main :focus-visible { outline-color: var(--main-ink); }
-
-    .wrap { width: min(100% - 3rem, 76rem); margin-inline: auto; }
-
-    /* ---------- Main section: the diagram ---------- */
-    .main {
-      background: var(--main-bg);
-      color: var(--main-text);
-      min-height: 100vh;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .main header { padding-block: 1.75rem 1rem; }
-    .main header .wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .brand {
-      font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
-      font-weight: 700;
-      font-size: 1.5rem;
-      letter-spacing: -0.01em;
-      text-decoration: none;
-    }
-    .tagline { margin: 0.15rem 0 0; font-size: 1.0625rem; }
-    nav { display: flex; gap: 1.75rem; font-size: 1rem; }
-    nav a { text-decoration: none; }
-    nav a:hover { text-decoration: underline; }
-
-    .main .wrap.chart-wrap {
-      flex: 1;
-      display: flex;
-      padding-block: 0.5rem 2.5rem;
-    }
-
-    /* The chart is a crosshair: one horizontal and one vertical axis through the center */
-    .chart {
-      position: relative;
-      flex: 1;
-      min-height: 32rem;
-    }
-    .chart::before,
-    .chart::after {
-      content: "";
-      position: absolute;
-      background: var(--main-ink);
-    }
-    /* horizontal axis (years) */
-    .chart::before {
-      left: 4.5rem;
-      right: 4.5rem;
-      top: 50%;
-      height: 2px;
-      margin-top: -1px;
-    }
-    /* vertical axis (work / play) */
-    .chart::after {
-      top: 2rem;
-      bottom: 2rem;
-      left: 50%;
-      width: 2px;
-      margin-left: -1px;
-    }
-
-    .axis-label {
-      position: absolute;
-      font-family: var(--display);
-      font-weight: 500;
-      font-size: 1rem;
-      line-height: 1;
-    }
-    .axis-label.top    { top: 0;    left: 50%; transform: translateX(-50%); }
-    .axis-label.bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
-    .axis-label.left   { left: 0;   top: 50%;  transform: translateY(-50%); }
-    .axis-label.right  { right: 0;  top: 50%;  transform: translateY(-50%); }
-
-    /* Points are positioned inside this area. 50% / 50% is the exact center. */
-    .field {
-      position: absolute;
-      inset: 2.75rem 5.5rem;
-      z-index: 1;
-    }
-
-    .point {
-      position: absolute;
-      left: var(--x);
-      bottom: var(--y);
-      transform: translate(-50%, 50%);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      color: var(--main-text);
-      text-decoration: none;
-      font-family: var(--display);
-      font-weight: 500;
-      font-size: 0.9375rem;
-      line-height: 1.2;
-      white-space: nowrap;
-    }
-    .point::before {
-      content: "";
-      flex: none;
-      width: 1.25rem;
-      height: 1.25rem;
-      border-radius: 50%;
-      background: var(--main-ink);
-      transition: transform 0.15s;
-    }
-    .point:hover::before, .point:focus-visible::before { transform: scale(1.35); }
-    .point:hover span, .point:focus-visible span { text-decoration: underline; text-underline-offset: 0.2em; }
-    /* flip the label to the left of the dot near the right edge */
-    .point.flip { flex-direction: row-reverse; }
-
-    /* ---------- Bottom section: image and bio ---------- */
-    .bio {
-      background: var(--bio-bg);
-      padding-block: clamp(4rem, 9vw, 7rem);
-    }
-    .bio .wrap {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-      gap: 2.5rem clamp(2rem, 6vw, 5rem);
-      align-items: start;
-    }
-    .bio figure { margin: 0; }
-    .bio img,
-    .photo-placeholder {
-      display: block;
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-    }
-    .photo-placeholder {
-      display: grid;
-      place-items: center;
-      border: 2px dashed var(--axis);
-      font-family: var(--display);
-      font-size: 1rem;
-      opacity: 0.7;
-    }
-    .bio h2 {
-      font-family: var(--display);
-      font-weight: 700;
-      font-size: clamp(2rem, 4.5vw, 3.25rem);
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin: 0 0 1.5rem;
-    }
-    .bio p { max-width: 36rem; margin: 0 0 1.1rem; }
-    .bio .contact { margin-top: 2rem; }
-
-    @media (max-width: 720px) {
-      .bio .wrap { grid-template-columns: 1fr; }
-      .bio figure { max-width: 22rem; }
-      .chart::before { left: 3.25rem; right: 3.25rem; }
-      .field { inset: 2.75rem 3.5rem; }
-      .axis-label { font-size: 0.9375rem; }
-      .point { font-size: 0.8125rem; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .point::before { transition: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- ========== MAIN SECTION ========== -->
+
+  <!-- top -->
   <section class="main" id="top">
     <header>
       <div class="wrap">
@@ -232,19 +32,13 @@
 
     <div class="wrap chart-wrap">
       <div class="chart" role="group" aria-label="Projects plotted by year and type">
-
         <span class="axis-label top" aria-hidden="true">work</span>
         <span class="axis-label bottom" aria-hidden="true">play</span>
         <span class="axis-label left" aria-hidden="true">old</span>
         <span class="axis-label right" aria-hidden="true">recent</span>
 
         <div class="field">
-          <!--
-            Each project is one link. Move it by changing --x and --y:
-            --x: 0% is the far left (2021), 50% is the middle, 100% is the far right (2026).
-            --y: 0% is the bottom (play), 50% is the middle, 100% is the top (work).
-            Add class="point flip" if its label runs off the right edge.
-          -->
+          <!-- x: 0% left, 100% right. y: 0% bottom, 100% top. "flip" puts the label on the left. -->
           <a class="point" href="#" style="--x: 6%;  --y: 72%;"><span>Project one</span></a>
           <a class="point" href="#" style="--x: 20%; --y: 22%;"><span>Project two</span></a>
           <a class="point" href="#" style="--x: 32%; --y: 88%;"><span>Project three</span></a>
@@ -252,26 +46,30 @@
           <a class="point" href="#" style="--x: 68%; --y: 68%;"><span>Project five</span></a>
           <a class="point flip" href="#" style="--x: 96%; --y: 28%;"><span>Project six</span></a>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ========== BOTTOM SECTION ========== -->
+  <!-- bottom -->
   <section class="bio" id="bio">
-    <div class="wrap">
+    <div class="wrap bio-grid">
       <figure>
-        <!-- Replace this box with your photo:
-             <img src="your-photo.jpg" alt="Portrait of Your Name"> -->
+        <!-- <img src="photo.jpg" alt="Waad"> -->
         <div class="photo-placeholder">Your photo</div>
       </figure>
 
-      <div>
-        <p>Waadmagram.com is a porfolio displaying Waad's interest and passion on a perceptual map</p>
-        <p>Add a second paragraph if you like. Keep it warm and specific.</p>
-        <p class="contact" id="contact">Contact: <a href="mailto:you@example.com">you@example.com</a></p>
+      <div class="bio-text">
+        <p>Waadmagram.com is a portfolio displaying Waad's interest and passion on a perceptual map</p>
+        <p>Add a second paragraph if you like.</p>
       </div>
     </div>
+
+    <footer id="contact">
+      <p class="sign">Waad Magram</p>
+      <p class="contact"><a href="mailto:you@example.com">✿ contact me ✿</a></p>
+      <p class="sparkle" aria-hidden="true">⋆｡˚ ☾ ˚｡⋆</p>
+    </footer>
   </section>
+
 </body>
 </html>
