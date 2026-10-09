@@ -69,18 +69,30 @@
     </footer>
   </section>
 <script>
+  /* Puts the spiral's center exactly on the map's crosshair, on any screen size. */
   const main = document.querySelector('.main');
   const chart = document.querySelector('.chart');
 
-  function centerRings() {
+  const IMG_W = 4, IMG_H = 3;              /* the photo's shape (4:3) */
+  const SPIRAL_X = 0.46, SPIRAL_Y = 0.50;  /* where the spiral center is in the photo */
+
+  function placeFelt() {
     const m = main.getBoundingClientRect();
     const c = chart.getBoundingClientRect();
-    main.style.setProperty('--mx', (c.left + c.width / 2 - m.left) + 'px');
-    main.style.setProperty('--my', (c.top + c.height / 2 - m.top) + 'px');
+    const cx = c.left + c.width / 2 - m.left;
+    const cy = c.top + c.height / 2 - m.top;
+
+    const s = Math.max(
+      cx / (SPIRAL_X * IMG_W), (m.width - cx) / ((1 - SPIRAL_X) * IMG_W),
+      cy / (SPIRAL_Y * IMG_H), (m.height - cy) / ((1 - SPIRAL_Y) * IMG_H)
+    );
+    const w = IMG_W * s, h = IMG_H * s;
+    main.style.setProperty('--bg-size', w + 'px ' + h + 'px');
+    main.style.setProperty('--bg-pos', (cx - SPIRAL_X * w) + 'px ' + (cy - SPIRAL_Y * h) + 'px');
   }
 
-  centerRings();
-  window.addEventListener('resize', centerRings);
+  placeFelt();
+  window.addEventListener('resize', placeFelt);
 </script>
 </body>
 </html>
