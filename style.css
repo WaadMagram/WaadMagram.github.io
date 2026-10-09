@@ -32,7 +32,7 @@ a { color: inherit; text-underline-offset: 0.2em; }
 
 .main {
   /* felt photo background */
-  background: #d9cfd6 url("felt.jpg") center / cover no-repeat;
+  background: #d9cfd6 url("felt.jpeg") center / cover no-repeat;
   color: var(--black);
   min-height: 100vh;
   min-height: 100svh;
