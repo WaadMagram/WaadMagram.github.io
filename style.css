@@ -194,7 +194,7 @@ footer p { margin: 0; }
   figure { max-width: 22rem; }
   .chart::before { left: 3.25rem; right: 3.25rem; }
   .field { inset: 2.75rem 3.5rem; }
-  .axis-label { font-size: 0.9375rem; }
+  .axis-label { font-weight: 700; }
   .point { font-size: 0.8125rem; }
 }
 
