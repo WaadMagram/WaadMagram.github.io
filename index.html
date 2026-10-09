@@ -58,7 +58,7 @@
 
       <div class="bio-text">
         <p>Waadmagram.com is a portfolio displaying Waad's interest and passion on a perceptual map</p>
-        <p>Add a second paragraph if you like.</p>
+        <p>Waad is a pursuing a PhD in material science and engineering </p>
       </div>
     </div>
 
@@ -68,6 +68,19 @@
       <p class="sparkle" aria-hidden="true">⋆｡˚ ☾ ˚｡⋆</p>
     </footer>
   </section>
+<script>
+  const main = document.querySelector('.main');
+  const chart = document.querySelector('.chart');
 
+  function centerRings() {
+    const m = main.getBoundingClientRect();
+    const c = chart.getBoundingClientRect();
+    main.style.setProperty('--mx', (c.left + c.width / 2 - m.left) + 'px');
+    main.style.setProperty('--my', (c.top + c.height / 2 - m.top) + 'px');
+  }
+
+  centerRings();
+  window.addEventListener('resize', centerRings);
+</script>
 </body>
 </html>
