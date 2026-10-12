@@ -67,7 +67,7 @@ header .wrap {
 }
 
 .brand { font-size: 2.75rem; line-height: 1.1; letter-spacing: -0.01em; text-decoration: none; }
-.tagline { margin: 0.35rem 0 0; font-size: 1rem; }
+.tagline { margin: 0.35rem 0 0; font-size: 1.1rem; }
 
 nav { display: flex; gap: 2.25rem; font-size: 1.375rem; }
 nav a { text-decoration: none; }
@@ -184,3 +184,15 @@ footer p { margin: 0; }
 
 /* tagline in Satoshi */
 .tagline { font-family: "Satoshi", var(--font); }
+
+/* hand-drawn axes */
+.chart::before,
+.chart::after { background: no-repeat center / 100% 100%; }
+.chart::before { height: 12px; margin-top: -6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 12' preserveAspectRatio='none'%3E%3Cpath d='M0 6.9 Q0 6.9 19 6.9 Q38 6.9 58 7.6 Q77 8.3 96 7.1 Q115 6.0 135 6.2 Q154 6.4 173 5.6 Q192 4.9 212 4.0 Q231 3.2 250 3.6 Q269 4.1 288 3.5 Q308 3.0 327 3.9 Q346 4.8 365 4.8 Q385 4.8 404 5.3 Q423 5.9 442 6.7 Q462 7.5 481 8.2 Q500 8.9 519 7.7 Q538 6.4 558 6.2 Q577 5.9 596 6.0 Q615 6.0 635 6.0 Q654 6.0 673 5.2 Q692 4.4 712 4.1 Q731 3.8 750 4.9 Q769 6.0 788 5.2 Q808 4.3 827 6.0 Q846 7.7 865 7.3 Q885 6.9 904 6.9 Q923 6.9 942 6.8 Q962 6.7 981 6.6 T1000 6.5' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); }
+.chart::after { width: 12px; margin-left: -6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 1000' preserveAspectRatio='none'%3E%3Cpath d='M0 6.4 Q0 6.4 19 7.4 Q38 8.4 58 8.3 Q77 8.2 96 7.7 Q115 7.2 135 6.3 Q154 5.5 173 5.8 Q192 6.1 212 5.7 Q231 5.3 250 4.7 Q269 4.1 288 4.2 Q308 4.3 327 4.3 Q346 4.3 365 4.4 Q385 4.6 404 5.6 Q423 6.7 442 7.3 Q462 8.0 481 7.3 Q500 6.7 519 7.5 Q538 8.4 558 7.2 Q577 5.9 596 5.4 Q615 4.9 635 4.2 Q654 3.4 673 4.5 Q692 5.6 712 5.2 Q731 4.8 750 5.3 Q769 5.7 788 5.8 Q808 5.9 827 5.6 Q846 5.3 865 6.1 Q885 7.0 904 7.4 Q923 7.9 942 7.3 Q962 6.7 981 7.5 T1000 8.4' transform='matrix%280 1 1 0 0 0%29' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E"); }
+
+/* axis labels in Artsy Night, like the name */
+.axis-label { font-family: "Artsy Night", var(--font); -webkit-text-stroke: 0; font-size: 1.75rem; }
+@media (max-width: 720px) { .axis-label { font-size: 1.35rem; } }
