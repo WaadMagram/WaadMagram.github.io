@@ -1,7 +1,14 @@
-/* Waad's name font: Westernic Rasterized (No Design Foundry) */
+/* tagline font: Satoshi (Indian Type Foundry, free via Fontshare) */
 @font-face {
-  font-family: "ArtsyNight";
-  src: url("ArtsyNight.otf") format("truetype");
+  font-family: "Satoshi";
+  src: url("Satoshi-Regular.otf") format("opentype");
+  font-display: swap;
+}
+
+/* Waad's name font: Artsy Night (Eko Bimantara) */
+@font-face {
+  font-family: "Artsy Night";
+  src: url("ArtsyNight.otf") format("opentype");
   font-display: swap;
 }
 
@@ -171,6 +178,9 @@ footer p { margin: 0; }
 /* name and tagline in navy */
 .brand, .tagline { color: var(--navy); }
 
-/* name in Westernic Rasterized */
-.brand { font-family: "ArtsyNight", var(--font); font-size: 3.25rem; letter-spacing: 0; }
+/* name in Artsy Night */
+.brand { font-family: "Artsy Night", var(--font); font-size: 3.25rem; letter-spacing: 0; }
 @media (max-width: 720px) { .brand { font-size: 2.6rem; } }
+
+/* tagline in Satoshi */
+.tagline { font-family: "Satoshi", var(--font); }
