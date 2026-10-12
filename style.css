@@ -67,7 +67,7 @@ header .wrap {
 }
 
 .brand { font-size: 2.75rem; line-height: 1.1; letter-spacing: -0.01em; text-decoration: none; }
-.tagline { margin: 0.35rem 0 0; font-size: 1.5rem; }
+.tagline { margin: 0.35rem 0 0; font-size: 1rem; }
 
 nav { display: flex; gap: 2.25rem; font-size: 1.375rem; }
 nav a { text-decoration: none; }
