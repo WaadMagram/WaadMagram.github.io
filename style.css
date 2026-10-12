@@ -1,10 +1,12 @@
 :root {
-  --mauve: #83454e;
-  --ink: #26251f;
-  --black: #000000;
+  --paper: #bcb775;   /* notebook green */
+  --rule:  #808080;   /* notebook lines */
+  --navy:  #0b0758;   /* border */
+  --ink:   #000000;   /* text, axes, dots */
+  --black: #000000;   /* bio background */
+  --bio-text: #bcb775;
 
-  --display: "Questrial", "Helvetica Neue", Arial, sans-serif;
-  --body: "Questrial", "Helvetica Neue", Arial, sans-serif;
+  --font: "Questrial", "Helvetica Neue", Arial, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -13,58 +15,41 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--black);
-  color: var(--mauve);
-  font-family: var(--body);
-  font-size: 1.1875rem;
+  color: var(--bio-text);
+  font-family: var(--font);
+  font-size: 1.25rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
 a { color: inherit; text-underline-offset: 0.2em; }
-
-:focus-visible { outline: 3px solid var(--mauve); outline-offset: 4px; }
-.main :focus-visible { outline-color: var(--ink); }
+:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
 
 .wrap { width: min(100% - 3rem, 76rem); margin: 0 auto; }
 
 
-/* top */
+/* top: green notebook paper */
 
 .main {
-  /* felt photo background */
-  background: #d9cfd6 url("felt.jpeg") no-repeat;
-  background-size: var(--bg-size, cover);
-  background-position: var(--bg-pos, center);
-  color: var(--black);
+  color: var(--ink);
   min-height: 100vh;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  position: relative;
-  isolation: isolate;
-}
 
-/* soft light wash over the photo so the text stays readable.
-   raise 0.35 for a paler photo, lower it to see more of the felt */
-.main::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: rgba(255, 255, 255, 0.2);
-}
+  /* paper + dotted ruled lines, with a 20px margin inside the border */
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--paper), var(--paper)), linear-gradient(var(--paper), var(--paper)),
+    linear-gradient(var(--paper), var(--paper)), linear-gradient(var(--paper), var(--paper)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='25'%3E%3Crect x='0' y='24' width='1' height='1' fill='%23808080'/%3E%3C/svg%3E");
+  background-size: 100% 20px, 100% 20px, 20px 100%, 20px 100%, 2px 25px;
+  background-position: top, bottom, left, right, 0 0;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
 
-/* paper grain */
-.main::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* stitched navy border (delete these two lines for no border) */
+  border: 6px solid var(--navy);
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='%230b0758'%3E%3Crect x='7' y='0' width='8' height='2'/%3E%3Crect x='9' y='2' width='4' height='2'/%3E%3Crect x='6' y='4' width='10' height='2'/%3E%3Crect x='7' y='20' width='8' height='2'/%3E%3Crect x='9' y='18' width='4' height='2'/%3E%3Crect x='6' y='16' width='10' height='2'/%3E%3Crect x='0' y='7' width='2' height='8'/%3E%3Crect x='2' y='9' width='2' height='4'/%3E%3Crect x='4' y='6' width='2' height='10'/%3E%3Crect x='20' y='7' width='2' height='8'/%3E%3Crect x='18' y='9' width='2' height='4'/%3E%3Crect x='16' y='6' width='2' height='10'/%3E%3Crect x='1' y='1' width='5' height='5'/%3E%3Crect x='16' y='1' width='5' height='5'/%3E%3Crect x='1' y='16' width='5' height='5'/%3E%3Crect x='16' y='16' width='5' height='5'/%3E%3C/svg%3E") 6 round;
 }
 
 header { padding: 1.75rem 0 1rem; }
@@ -76,16 +61,10 @@ header .wrap {
   gap: 1.5rem;
 }
 
-.brand {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-}
-.tagline { margin: 0.15rem 0 0; font-size: 1.0625rem; }
+.brand { font-size: 2.75rem; line-height: 1.1; letter-spacing: -0.01em; text-decoration: none; }
+.tagline { margin: 0.35rem 0 0; font-size: 1.5rem; }
 
-nav { display: flex; gap: 1.75rem; font-size: 1rem; }
+nav { display: flex; gap: 2.25rem; font-size: 1.375rem; }
 nav a { text-decoration: none; }
 nav a:hover { text-decoration: underline; }
 
@@ -99,22 +78,21 @@ nav a:hover { text-decoration: underline; }
   position: absolute;
   background: var(--ink);
 }
-.chart::before { left: 4.5rem; right: 4.5rem; top: 50%; height: 2px; margin-top: -1px; }
-.chart::after  { top: 2rem; bottom: 2rem; left: 50%; width: 2px; margin-left: -1px; }
+.chart::before { left: 6rem; right: 6.5rem; top: 50%; height: 2px; margin-top: -1px; }
+.chart::after  { top: 2.25rem; bottom: 2.25rem; left: 50%; width: 2px; margin-left: -1px; }
 
 .axis-label {
   position: absolute;
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: 1rem;
+  font-size: 1.5rem;
   line-height: 1;
+  -webkit-text-stroke: 0.5px currentColor;   /* makes them look bold */
 }
 .axis-label.top    { top: 0;    left: 50%; transform: translateX(-50%); }
 .axis-label.bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
 .axis-label.left   { left: 0;   top: 50%;  transform: translateY(-50%); }
 .axis-label.right  { right: 0;  top: 50%;  transform: translateY(-50%); }
 
-.field { position: absolute; inset: 2.75rem 5.5rem; z-index: 1; }
+.field { position: absolute; inset: 3.25rem 7rem; z-index: 1; }
 
 .point {
   position: absolute;
@@ -125,17 +103,15 @@ nav a:hover { text-decoration: underline; }
   align-items: center;
   gap: 0.6rem;
   text-decoration: none;
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: 0.9375rem;
+  font-size: 1.3rem;
   line-height: 1.2;
   white-space: nowrap;
 }
 .point::before {
   content: "";
   flex: none;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.4rem;
+  height: 1.4rem;
   border-radius: 50%;
   background: var(--ink);
   transition: transform 0.15s;
@@ -145,7 +121,7 @@ nav a:hover { text-decoration: underline; }
 .point.flip { flex-direction: row-reverse; }
 
 
-/* bottom */
+/* bottom: bio */
 
 .bio { padding: 4.5rem 0 3.5rem; }
 
@@ -157,32 +133,19 @@ nav a:hover { text-decoration: underline; }
 }
 
 figure { margin: 0; }
-figure img,
-.photo-placeholder {
+figure img {
   display: block;
   width: 100%;
   aspect-ratio: 9 / 10;
   object-fit: cover;
-}
-.photo-placeholder {
-  display: grid;
-  place-items: center;
-  border: 1px dashed var(--mauve);
-  opacity: 0.6;
 }
 
 .bio-text p { max-width: 40rem; margin: 0 0 1.6rem; }
 
 footer { text-align: center; margin-top: 4rem; }
 footer p { margin: 0; }
-.sign {
-  font-family: var(--body);
-  font-weight: 500;
-  font-size: clamp(2.5rem, 5vw, 3.75rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-.contact { margin-top: 1.5rem; font-size: 1.0625rem; }
+.sign { font-size: clamp(2.5rem, 5vw, 3.75rem); line-height: 1; letter-spacing: -0.02em; }
+.contact { margin-top: 1.5rem; font-size: 1.125rem; }
 .contact a { text-decoration: none; }
 .contact a:hover { text-decoration: underline; }
 .sparkle { margin-top: 1.25rem; font-size: 0.875rem; opacity: 0.8; }
@@ -190,15 +153,22 @@ footer p { margin: 0; }
 
 /* phones */
 @media (max-width: 720px) {
+  .brand { font-size: 2.25rem; }
+  .tagline { font-size: 1.2rem; }
+  nav { font-size: 1.15rem; }
+  .axis-label { font-size: 1.15rem; }
+  .point { font-size: 0.95rem; }
+  .point::before { width: 1.1rem; height: 1.1rem; }
+  .chart::before { left: 3.5rem; right: 4.25rem; }
+  .field { inset: 2.75rem 3.5rem; }
   .bio-grid { grid-template-columns: 1fr; }
   figure { max-width: 22rem; }
-  .chart::before { left: 3.25rem; right: 3.25rem; }
-  .field { inset: 2.75rem 3.5rem; }
-  .axis-label { font-weight: 700; }
-  .point { font-size: 0.8125rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .point::before { transition: none; }
 }
+
+/* name and tagline in navy */
+.brand, .tagline { color: var(--navy); }
