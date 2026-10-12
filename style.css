@@ -15,6 +15,7 @@
 :root {
   --paper: #bcb775;   /* notebook green */
   --navy:  #0b0758;   /* border */
+  --bio-navy: #262948; /* bottom section */
   --ink:   #000000;   /* text, axes, dots */
   --black: #000000;   /* bio background */
   --bio-text: #bcb775;
@@ -199,7 +200,7 @@ footer p { margin: 0; }
 
 /* ===== bottom section: solid navy with a dithered fade at the top ===== */
 .bio {
-  background: var(--navy) url("navy-fade.png") top left / auto 140px repeat-x;
+  background: var(--bio-navy) url("navy-fade.png") top left / auto 140px repeat-x;
   image-rendering: pixelated;
   padding-top: 11rem;
   color: var(--paper);
