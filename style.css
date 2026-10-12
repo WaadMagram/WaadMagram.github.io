@@ -1,6 +1,5 @@
 :root {
   --paper: #bcb775;   /* notebook green */
-  --rule:  #808080;   /* notebook lines */
   --navy:  #0b0758;   /* border */
   --ink:   #000000;   /* text, axes, dots */
   --black: #000000;   /* bio background */
@@ -37,15 +36,7 @@ a { color: inherit; text-underline-offset: 0.2em; }
   display: flex;
   flex-direction: column;
 
-  /* paper + dotted ruled lines, with a 20px margin inside the border */
-  background-color: var(--paper);
-  background-image:
-    linear-gradient(var(--paper), var(--paper)), linear-gradient(var(--paper), var(--paper)),
-    linear-gradient(var(--paper), var(--paper)), linear-gradient(var(--paper), var(--paper)),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='25'%3E%3Crect x='0' y='24' width='1' height='1' fill='%23808080'/%3E%3C/svg%3E");
-  background-size: 100% 20px, 100% 20px, 20px 100%, 20px 100%, 2px 25px;
-  background-position: top, bottom, left, right, 0 0;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+  background: var(--paper);
 
   /* stitched navy border (delete these two lines for no border) */
   border: 6px solid var(--navy);
