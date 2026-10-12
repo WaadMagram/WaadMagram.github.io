@@ -1,7 +1,7 @@
 /* Waad's name font: Westernic Rasterized (No Design Foundry) */
 @font-face {
-  font-family: "Westernic Rasterized";
-  src: url("rasterizer.ttf") format("truetype");
+  font-family: "ArtsyNight";
+  src: url("ArtsyNight.otf") format("truetype");
   font-display: swap;
 }
 
@@ -172,5 +172,5 @@ footer p { margin: 0; }
 .brand, .tagline { color: var(--navy); }
 
 /* name in Westernic Rasterized */
-.brand { font-family: "Westernic Rasterized", var(--font); font-size: 3.25rem; letter-spacing: 0; }
+.brand { font-family: "ArtsyNight", var(--font); font-size: 3.25rem; letter-spacing: 0; }
 @media (max-width: 720px) { .brand { font-size: 2.6rem; } }
