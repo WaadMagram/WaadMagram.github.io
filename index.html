@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -57,42 +58,17 @@
       </figure>
 
       <div class="bio-text">
-        <p>Waadmagram.com is a portfolio displaying Waad's interest and passion on a perceptual map</p>
-        <p>Waad is pursuing a PhD in materials science and engineering. She is based in Providence, with roots in Jeddah and Hadramout.</p>
+        <p>Waadmagram.com is a portfolio displaying Waad's interests and passions on a perceptual map.</p>
+        <p>Waad is pursuing a PhD in materials science and engineering. She is based in New England, with roots in Jeddah and Hadramout.</p>
       </div>
     </div>
 
     <footer id="contact">
       <p class="sign">Waad Magram</p>
-      <p class="contact"><a href="mailto:waadmagram@gmail.com">✿ contact me ✿</a></p>
+      <p class="contact"><a href="mailto:you@example.com">✿ contact me ✿</a></p>
       <p class="sparkle" aria-hidden="true">⋆｡˚ ☾ ˚｡⋆</p>
     </footer>
   </section>
-<script>
-  /* Puts the spiral's center exactly on the map's crosshair, on any screen size. */
-  const main = document.querySelector('.main');
-  const chart = document.querySelector('.chart');
 
-  const IMG_W = 4, IMG_H = 3;              /* the photo's shape (4:3) */
-  const SPIRAL_X = 0.46, SPIRAL_Y = 0.50;  /* where the spiral center is in the photo */
-
-  function placeFelt() {
-    const m = main.getBoundingClientRect();
-    const c = chart.getBoundingClientRect();
-    const cx = c.left + c.width / 2 - m.left;
-    const cy = c.top + c.height / 2 - m.top;
-
-    const s = Math.max(
-      cx / (SPIRAL_X * IMG_W), (m.width - cx) / ((1 - SPIRAL_X) * IMG_W),
-      cy / (SPIRAL_Y * IMG_H), (m.height - cy) / ((1 - SPIRAL_Y) * IMG_H)
-    );
-    const w = IMG_W * s, h = IMG_H * s;
-    main.style.setProperty('--bg-size', w + 'px ' + h + 'px');
-    main.style.setProperty('--bg-pos', (cx - SPIRAL_X * w) + 'px ' + (cy - SPIRAL_Y * h) + 'px');
-  }
-
-  placeFelt();
-  window.addEventListener('resize', placeFelt);
-</script>
 </body>
 </html>
