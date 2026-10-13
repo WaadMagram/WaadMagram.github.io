@@ -13,7 +13,7 @@
 }
 
 :root {
-  --paper: #bcb775;   /* notebook green */
+  --paper: #b6b20d;   /* background green */
   --navy:  #0b0758;   /* border */
   --bio-navy: #262948; /* bottom section */
   --ink:   #000000;   /* text, axes, dots */
