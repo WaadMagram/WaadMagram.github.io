@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project one | Waad Magram</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="project.css">
+</head>
+
+<body>
+  <main class="project">
+    <div class="project-top">
+      <span>Category | Category</span>
+      <span>Year</span>
+      <a class="project-close" href="../index.html" aria-label="Close">&times;</a>
+    </div>
+
+    <header class="project-head">
+      <h1>Project one</h1>
+      <p>One-line description of the project.</p>
+    </header>
+
+    <div class="project-body">
+      <div class="project-text">
+        <p>Write a short paragraph about this project here.</p>
+        <h2>Section title</h2>
+        <p>Write more about one part of the project here.</p>
+      </div>
+
+      <div class="project-images">
+        <!-- put this project's pictures in images/project-1/ and swap each box for:
+             <img src="../images/project-1/your-image.jpg" alt="what it shows"> -->
+        <div class="img-placeholder">Image</div>
+        <div class="img-placeholder">Image</div>
+        <div class="img-placeholder wide">Image</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    /* inside the box on the map page, the x closes the box instead of reloading */
+    if (window.parent !== window) {
+      document.querySelector('.project-close').addEventListener('click', e => {
+        e.preventDefault();
+        window.parent.postMessage('close-project', '*');
+      });
+    }
+  </script>
+</body>
+</html>
