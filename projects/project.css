@@ -1,12 +1,12 @@
 /* Shared look for every project page (project-1.html, project-2.html ...).
    To change one project only, add a <style> block in that project's own file. */
 
-@font-face { font-family: "Satoshi"; src: url("../fonts/Satoshi-Regular.otf") format("opentype"); font-display: swap; }
-@font-face { font-family: "Artsy Night"; src: url("../fonts/ArtsyNight.otf") format("opentype"); font-display: swap; }
+@font-face { font-family: "Array Bold Wide"; src: url("../fonts/array/Array-BoldWide.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Hind"; src: url("../fonts/hind/Hind-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 
 :root {
-  --paper: #f7f7f2;
-  --navy:  #0b0758;
+  --paper: #fffaf0;
+  --navy:  #301728;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -15,7 +15,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--navy);
-  font-family: "Satoshi", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Hind", "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; text-underline-offset: 0.2em; }
@@ -40,7 +40,7 @@ a { color: inherit; text-underline-offset: 0.2em; }
   text-align: center;
 }
 .project-head h1 {
-  font-family: "Artsy Night", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Array Bold Wide", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   font-size: clamp(2.25rem, 5vw, 3.5rem);
   line-height: 1;
@@ -70,3 +70,4 @@ a { color: inherit; text-underline-offset: 0.2em; }
   .project-body { grid-template-columns: minmax(0, 1fr); }
   .project-images { grid-template-columns: minmax(0, 1fr); }
 }
+
