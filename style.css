@@ -96,7 +96,7 @@ nav a:hover, nav a[aria-current="page"] { text-decoration: underline; }
 
 .axis-label {
   position: absolute;
-  font-weight: 700;
+  font-weight: 300;
   font-size: 1.0rem;
   line-height: 1;
   text-transform: capitalize;
