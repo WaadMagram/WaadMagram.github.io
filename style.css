@@ -163,14 +163,13 @@ dialog.project-box iframe { display: block; width: 100%; height: 100%; border: 0
 
 /* ===== bio page (bio.html) ===== */
 .bio {
-  background: linear-gradient(to right, var(--block) 0 40%, var(--paper) 40%);
-  padding: 4rem 3rem 4rem 40%;
-  min-height: calc(100vh - 8rem);
+  width: min(100% - 3rem, 76rem);
+  margin: 0 auto;
+  padding: 3rem 0 4rem;
 }
 .bio-inner { display: grid; gap: 2rem; max-width: 36rem; }
 .bio figure { margin: 0; max-width: 22rem; }
 .bio figure img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
-.bio-text, .bio-contact { padding-left: 3rem; }
 .bio-text p { margin: 0 0 1.4rem; }
 .bio-contact { margin-top: 1rem; }
 .bio-contact a { text-decoration: none; }
@@ -202,10 +201,9 @@ dialog.project-box iframe { display: block; width: 100%; height: 100%; border: 0
   .point.thumb { font-size: 0.75rem; }
   .chart::before { left: 4rem; right: 4.75rem; }
   .field { inset: 2.75rem 3.5rem; }
-
   .bio {
-    background: linear-gradient(to bottom, var(--block) 0 6rem, var(--paper) 6rem);
-    padding: 6rem 1.5rem 3rem;
+    background: var(--paper);
+    padding: 2rem 1.5rem 3rem;
   }
   .bio figure { margin-inline: -1.5rem; max-width: none; }
   .bio-text, .bio-contact { padding-left: 0; }
