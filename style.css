@@ -1,30 +1,33 @@
-/* ===== fonts ===== */
-@font-face {                       /* your name */
+/myfonts
+/*myname*/
+@font-face { 
   font-family: "Array";
   src: url("fonts/array/Array-Regular.woff2") format("woff2");
   font-display: swap;
 }
-@font-face {                       /* all other text */
+/*text*/
+@font-face { 
   font-family: "Hind";
   src: url("fonts/hind/Hind-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
-@font-face {                       /* axis labels */
+{ /axis labels */
+@font-face 
   font-family: "Hind";
-  src: url("fonts/hind/Hind-Bold.woff2") format("woff2");
+  src: url("fonts/hind/Hind-light.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
 
-/* ===== colors ===== */
+/*colors*/
 :root {
   --paper:   #fffaf0;   /* background */
-  --name:    #301728;   /* your name (Aubergine Gleam) */
-  --tagline: #275b4b;   /* tagline */
-  --axis:    #01332b;   /* axis lines (Minty Emerald) */
+  --name:    #275b4b;   
+  --tagline: #275b4b;   
+  --axis:    #01332b;
   --ink:     #000000;   /* text and dots */
-  --block:   #301728;   /* bio sidebar */
+  --block:   #275b4b;   /* bio sidebar */
 
   --font: "Hind", "Helvetica Neue", Arial, sans-serif;
   --name-font: "Array", "Helvetica Neue", Arial, sans-serif;
