@@ -102,6 +102,7 @@ nav a:hover, nav a[aria-current="page"] { text-decoration: underline; }
   text-transform: capitalize;
   letter-spacing: 0.04em;
   color: #275b4b; 
+  text-transform: capitalize;
 }
 .axis-label.top    { top: 0;    left: 50%; transform: translateX(-50%); }
 .axis-label.bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
