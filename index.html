@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Waad Magram</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="map-page">
+  <header>
+    <div class="wrap">
+      <div>
+        <a class="brand" href="index.html">Waad Magram</a>
+        <p class="tagline">Material scientist and engineer based in providence.</p>
+      </div>
+      <nav aria-label="Main">
+        <a href="bio.html">Bio</a>
+        <a href="site-meta.html">Site meta</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="wrap chart-wrap">
+      <div class="chart" role="group" aria-label="Projects plotted by time and by work or play">
+        <span class="axis-label top" aria-hidden="true">work</span>
+        <span class="axis-label bottom" aria-hidden="true">play</span>
+        <span class="axis-label left" aria-hidden="true">old</span>
+        <span class="axis-label right" aria-hidden="true">recent</span>
+
+        <div class="field">
+          <!--
+            Move a project with --x and --y.
+            --x: 0% left (old), 100% right (recent).  --y: 0% bottom (play), 100% top (work).
+            "thumb" shows a picture. Without it, the project shows as a dot with its name.
+            "flip" puts a dot's name on the left side.
+          -->
+          <a class="point thumb" href="projects/project-1.html" style="--x: 8%;  --y: 74%;">
+            <img src="landingpage_images/project-1.png" alt="Project one">
+            <span>Project one</span>
+          </a>
+          <a class="point thumb" href="projects/project-2.html" style="--x: 22%; --y: 22%;">
+            <img src="landingpage_images/project-2.png" alt="Project two">
+            <span>Project two</span>
+          </a>
+          <a class="point" href="projects/project-3.html" style="--x: 34%; --y: 90%;"><span>Project three</span></a>
+          <a class="point" href="projects/project-4.html" style="--x: 60%; --y: 14%;"><span>Project four</span></a>
+          <a class="point" href="projects/project-5.html" style="--x: 68%; --y: 68%;"><span>Project five</span></a>
+          <a class="point flip" href="projects/project-6.html" style="--x: 96%; --y: 28%;"><span>Project six</span></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- the box a project opens in -->
+  <dialog class="project-box" id="project-box" aria-label="Project">
+    <iframe id="project-frame" title="Project"></iframe>
+  </dialog>
+
+  <script>
+    const box = document.getElementById('project-box');
+    const frame = document.getElementById('project-frame');
+
+    document.querySelectorAll('.point').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        frame.src = link.getAttribute('href');
+        box.showModal();
+      });
+    });
+
+    /* close with the x inside the project, the dark area outside, or Esc */
+    window.addEventListener('message', e => { if (e.data === 'close-project') box.close(); });
+    box.addEventListener('click', e => { if (e.target === box) box.close(); });
+    box.addEventListener('close', () => { frame.src = 'about:blank'; });
+  </script>
+</body>
+</html>
