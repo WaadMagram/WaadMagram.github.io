@@ -1,31 +1,34 @@
-/myfonts
-/*myname*/
-@font-face { 
+/* my fonts */
+
+/* my name */
+@font-face {
   font-family: "Array";
   src: url("fonts/array/Array-Regular.woff2") format("woff2");
   font-display: swap;
 }
-/*text*/
-@font-face { 
+
+/* text */
+@font-face {
   font-family: "Hind";
   src: url("fonts/hind/Hind-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
-{ /axis labels */
-@font-face 
+
+/* axis labels */
+@font-face {
   font-family: "Hind";
   src: url("fonts/hind/Hind-light.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
 
-/*colors*/
+/* colors */
 :root {
   --paper:   #fffaf0;   /* background */
-  --name:    #275b4b;   
-  --tagline: #275b4b;   
-  --axis:    #01332b;
+  --name:    #275b4b;   /* my name */
+  --tagline: #275b4b;   /* tagline */
+  --axis:    #01332b;   /* axis lines */
   --ink:     #000000;   /* text and dots */
   --block:   #275b4b;   /* bio sidebar */
 
