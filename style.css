@@ -91,8 +91,8 @@ nav a:hover, nav a[aria-current="page"] { text-decoration: underline; }
   position: absolute;
   background: var(--axis);
 }
-.chart::before { left: 6rem; right: 6.5rem; top: 50%; height: 2px; margin-top: -1px; }
-.chart::after  { top: 2.25rem; bottom: 2.25rem; left: 50%; width: 2px; margin-left: -1px; }
+.chart::before { left: 6rem; right: 6.5rem; top: 50%; height: 2px; margin-top: -0.5px; }
+.chart::after  { top: 2.25rem; bottom: 2.25rem; left: 50%; width: 2px; margin-left: -0.5px; }
 
 .axis-label {
   position: absolute;
