@@ -1,0 +1,14 @@
+/* Site meta page only (site-meta.html). Shared fonts, colors and the header are in style.css. */
+
+/* ===== site meta page (site-meta.html) ===== */
+.meta { padding: 3rem 0 5rem; }
+.meta-inner { max-width: 40rem; }
+.meta h1 {
+  font-family: var(--name-font);
+  font-weight: 400;
+  font-size: 1.8rem;
+  color: var(--name);
+  margin: 0 0 1.5rem;
+}
+.meta h2 { font-size: 1.2rem; font-weight: 700; margin: 2rem 0 0.4rem; }
+.meta p { margin: 0 0 1rem; }
