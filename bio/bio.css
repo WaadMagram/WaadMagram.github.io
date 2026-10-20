@@ -1,0 +1,25 @@
+/* Bio page only (bio.html). Shared fonts, colors and the header are in style.css. */
+
+/* ===== bio page (bio.html) ===== */
+.bio {
+  width: min(100% - 3rem, 76rem);
+  margin: 0 auto;
+  padding: 3rem 0 4rem;
+}
+.bio-inner { display: grid; gap: 2rem; max-width: 36rem; }
+.bio figure { margin: 0; max-width: 22rem; }
+.bio figure img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.bio-text p { margin: 0 0 1.4rem; }
+.bio-contact { margin-top: 1rem; }
+.bio-contact a { text-decoration: none; }
+.bio-contact a:hover { text-decoration: underline; }
+
+/* phones */
+@media (max-width: 720px) {
+  .bio {
+    background: var(--paper);
+    padding: 2rem 1.5rem 3rem;
+  }
+  .bio figure { margin-inline: -1.5rem; max-width: none; }
+  .bio-text, .bio-contact { padding-left: 0; }
+}
